@@ -17,8 +17,8 @@ module.exports = {
     entry: ['react-hot-loader/patch', './resources/scripts/index.tsx'],
     output: {
         path: path.join(__dirname, '/public/assets'),
-        filename: isProduction ? 'bundle.[chunkhash:8].js' : 'bundle.[hash:8].js',
-        chunkFilename: isProduction ? '[name].[chunkhash:8].js' : '[name].[hash:8].js',
+        filename: isProduction ? 'bundle.[chunkhash:8].js' : 'bundle.[contenthash:8].js',
+        chunkFilename: isProduction ? '[name].[chunkhash:8].js' : '[name].[contenthash:8].js',
         publicPath: (process.env.PUBLIC_PATH || '') + '/assets/',
         crossOriginLoading: 'anonymous',
     },
@@ -42,7 +42,10 @@ module.exports = {
             },
             {
                 test: /\.svg$/,
-                loader: 'svg-url-loader',
+                type: 'asset/resource',
+                generator: {
+                    filename: 'images/[name].[contenthash:8].[ext]',
+                },
             },
             {
                 test: /\.js$/,
@@ -64,6 +67,9 @@ module.exports = {
             'react-dom': '@hot-loader/react-dom',
         },
         symlinks: false,
+        fallback: {
+            'path': require.resolve('path-browserify')
+        }
     },
     externals: {
         // Mark moment as an external to exclude it from the Chart.js build since we don't need to use
@@ -97,7 +103,6 @@ module.exports = {
         minimize: isProduction,
         minimizer: [
             new TerserPlugin({
-                cache: isProduction,
                 parallel: true,
                 extractComments: false,
                 terserOptions: {

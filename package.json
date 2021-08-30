@@ -7,7 +7,7 @@
         "watch": "$npm_execpath cross-env NODE_ENV=development $npm_execpath webpack --watch --progress",
         "build": "$npm_execpath cross-env NODE_ENV=development $npm_execpath webpack --progress",
         "build:production": "$npm_execpath run clean && $npm_execpath cross-env NODE_ENV=production $npm_execpath webpack --mode production",
-        "serve": "$npm_execpath run clean && $npm_execpath cross-env PUBLIC_PATH=https://pterodactyl.test:8080 NODE_ENV=development $npm_execpath webpack-dev-server --host 0.0.0.0 --hot --https --key /etc/ssl/private/pterodactyl.test-key.pem --cert /etc/ssl/private/pterodactyl.test.pem"
+        "serve": "$npm_execpath run clean && $npm_execpath cross-env PUBLIC_PATH=https://pterodactyl.test:8080 NODE_ENV=development $npm_execpath webpack serve --host 0.0.0.0 --hot --https --key /etc/ssl/private/pterodactyl.test-key.pem --cert /etc/ssl/private/pterodactyl.test.pem"
     },
     "dependencies": {
         "@": "link:./resources/scripts",
@@ -137,19 +137,20 @@
         "eslint-plugin-react": "^7.24.0",
         "eslint-plugin-react-hooks": "^4.2.0",
         "fork-ts-checker-webpack-plugin": "^6.3.1",
+        "path-browserify": "^1.0.1",
         "postcss": "^8.3.6",
         "redux-devtools-extension": "^2.13.9",
         "source-map-loader": "^1.1.3",
         "style-loader": "^2.0.0",
         "svg-url-loader": "^7.1.1",
         "tailwindcss": "^2.2.7",
-        "terser-webpack-plugin": "^4.2.3",
+        "terser-webpack-plugin": "^5.1.4",
         "twin.macro": "^2.6.2",
         "typescript": "^4.3.5",
-        "webpack": "^4.46.0",
-        "webpack-assets-manifest": "^4.0.6",
+        "webpack": "^5.48.0",
+        "webpack-assets-manifest": "^5.0.6",
         "webpack-bundle-analyzer": "^4.4.2",
-        "webpack-cli": "^3.3.12",
+        "webpack-cli": "^4.7.2",
         "webpack-dev-server": "^3.11.2"
     },
     "engines": {
